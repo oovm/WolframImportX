@@ -11,6 +11,9 @@ pub use wolfram_library_link::{
 
 pub trait ToWolfram {
     fn to_wolfram(&self) -> Expr;
+    fn try_wolfram(&self) -> Option<Expr>{
+        Some(self.to_wolfram())
+    }
 }
 
 
