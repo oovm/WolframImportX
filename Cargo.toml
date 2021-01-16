@@ -1,7 +1,7 @@
 [workspace]
 members = ["projects/*"]
 default-members = [
-    "projects/sub_projects",
+    "projects/wolfram-import",
 ]
 exclude = [
     "projects/.DS_Store",

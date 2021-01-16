@@ -1,5 +1,5 @@
 [package]
-name = "sub_projects"
+name = "wolfram-import"
 publish = false
 version = "0.0.0"
 authors = ["Aster <192607617@qq.com>"]
@@ -10,6 +10,10 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
+wolfram-library-link = "0.2.2"
+serde_yaml = "0.8.23"
+toml = "0.5.8"
+json5 = "0.4.1"
 
 [dev-dependencies]
 
