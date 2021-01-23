@@ -1,13 +1,14 @@
 use serde_yaml::{Mapping, Number, Sequence, Value};
+use wolfram_library_link::expr::Symbol;
 use crate::{Expr, ToWolfram};
 
 impl ToWolfram for Value {
     fn to_wolfram(&self) -> Expr {
         match self {
-            Value::Null => { Expr::null() }
-            Value::Bool(v) => { Expr::from(v) }
+            Value::Null => { Expr::symbol("System`None") }
+            Value::Bool(v) => { Expr::from(*v) }
             Value::Number(v) => { Expr::from(v) }
-            Value::String(v) => { Expr::from(v) }
+            Value::String(v) => { Expr::from(v.as_str()) }
             Value::Sequence(v) => { Expr::from(v) }
             Value::Mapping(v) => { Expr::from(v) }
         }
@@ -31,12 +32,16 @@ impl ToWolfram for Number {
 
 impl ToWolfram for Sequence {
     fn to_wolfram(&self) -> Expr {
-        todo!()
+        Expr::list(self.iter().cloned().map(|f| f.to_wolfram()).collect())
     }
 }
 
 impl ToWolfram for Mapping {
     fn to_wolfram(&self) -> Expr {
-        todo!()
+        let mut association = Vec::with_capacity(self.len());
+        for (k, v) in self {
+            association.push(Expr::rule(k.to_wolfram(), v.to_wolfram()))
+        }
+        Expr::normal(Symbol::new("System`Association"), association)
     }
 }

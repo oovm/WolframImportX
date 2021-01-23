@@ -4,16 +4,13 @@ mod serder;
 pub use errors::{Error, Result};
 
 use wolfram_library_link::export;
-pub use wolfram_library_link::{
+ use wolfram_library_link::{
     expr::{Expr, Symbol},
 };
 
 
 pub trait ToWolfram {
     fn to_wolfram(&self) -> Expr;
-    fn try_wolfram(&self) -> Option<Expr>{
-        Some(self.to_wolfram())
-    }
 }
 
 

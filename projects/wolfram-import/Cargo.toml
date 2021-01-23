@@ -12,6 +12,7 @@ edition = "2021"
 [dependencies]
 wolfram-library-link = "0.2.2"
 serde_yaml = "0.8.23"
+serde_json = "1.0.79"
 toml = "0.5.8"
 json5 = "0.4.1"
 
