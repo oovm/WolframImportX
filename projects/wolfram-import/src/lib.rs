@@ -2,7 +2,7 @@ mod errors;
 mod serder;
 
 pub use errors::Result;
-pub use serder::import_json;
+pub use serder::try_import_json5;
 
 use crate::wstp::Link;
 use wolfram_library_link::{

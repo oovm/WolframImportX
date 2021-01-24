@@ -4,6 +4,7 @@ default-members = [
     "projects/wolfram-import",
 ]
 exclude = [
+    "projects/wolfram-bind",
     "projects/.DS_Store",
 ]
 

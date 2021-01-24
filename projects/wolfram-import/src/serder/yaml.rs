@@ -24,7 +24,7 @@ impl ToWolfram for Number {
             return n.into();
         }
         if let Some(n) = self.as_f64() {
-            return (n as u32).into();
+            return n.to_wolfram();
         }
         Expr::null()
     }
