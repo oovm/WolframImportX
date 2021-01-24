@@ -1,18 +1,19 @@
 mod errors;
 mod serder;
 
-pub use errors::{Error, Result};
+pub use errors::Result;
+pub use serder::import_json;
 
-use wolfram_library_link::export;
- use wolfram_library_link::{
+use crate::wstp::Link;
+use wolfram_library_link::{
+    export,
     expr::{Expr, Symbol},
+    wstp,
 };
-
 
 pub trait ToWolfram {
     fn to_wolfram(&self) -> Expr;
 }
-
 
 struct Point {
     x: f64,
@@ -32,9 +33,6 @@ impl Point {
     fn to_expr(&self) -> Expr {
         let Point { x, y } = *self;
 
-        Expr::normal(Symbol::new("System`Point"), vec![Expr::list(vec![
-            Expr::real(x),
-            Expr::real(y),
-        ])])
+        Expr::normal(Symbol::new("System`Point"), vec![Expr::list(vec![Expr::real(x), Expr::real(y)])])
     }
 }

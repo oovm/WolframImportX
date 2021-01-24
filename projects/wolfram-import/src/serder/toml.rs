@@ -1,18 +1,20 @@
-use toml::Value;
-use toml::value::{Array, Datetime, Table};
-use wolfram_library_link::expr::Symbol;
 use crate::{Expr, ToWolfram};
+use toml::{
+    value::{Array, Datetime, Table},
+    Value,
+};
+use wolfram_library_link::expr::Symbol;
 
 impl ToWolfram for Value {
     fn to_wolfram(&self) -> Expr {
         match self {
-            Value::String(v) => { Expr::from(v.clone()) }
-            Value::Integer(v) => { Expr::from(v) }
-            Value::Float(v) => { Expr::from(v) }
-            Value::Boolean(v) => { Expr::from(v) }
-            Value::Datetime(v) => { Expr::from(v) }
-            Value::Array(v) => { Expr::from(v) }
-            Value::Table(v) => { Expr::from(v) }
+            Value::String(v) => v.to_wolfram(),
+            Value::Integer(v) => Expr::from(*v),
+            Value::Float(v) => v.to_wolfram(),
+            Value::Boolean(v) => v.to_wolfram(),
+            Value::Datetime(v) => v.to_wolfram(),
+            Value::Array(v) => v.to_wolfram(),
+            Value::Table(v) => v.to_wolfram(),
         }
     }
 }
@@ -33,7 +35,7 @@ impl ToWolfram for Table {
     fn to_wolfram(&self) -> Expr {
         let mut association = Vec::with_capacity(self.len());
         for (k, v) in self {
-            association.push(Expr::rule(k, v.to_wolfram()))
+            association.push(Expr::rule(k.to_wolfram(), v.to_wolfram()))
         }
         Expr::normal(Symbol::new("System`Association"), association)
     }

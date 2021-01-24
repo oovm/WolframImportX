@@ -1,16 +1,16 @@
+use crate::{Expr, ToWolfram};
 use serde_yaml::{Mapping, Number, Sequence, Value};
 use wolfram_library_link::expr::Symbol;
-use crate::{Expr, ToWolfram};
 
 impl ToWolfram for Value {
     fn to_wolfram(&self) -> Expr {
         match self {
-            Value::Null => { Expr::symbol("System`None") }
-            Value::Bool(v) => { Expr::from(*v) }
-            Value::Number(v) => { Expr::from(v) }
-            Value::String(v) => { Expr::from(v.as_str()) }
-            Value::Sequence(v) => { Expr::from(v) }
-            Value::Mapping(v) => { Expr::from(v) }
+            Value::Null => ().to_wolfram(),
+            Value::Bool(v) => v.to_wolfram(),
+            Value::Number(v) => v.to_wolfram(),
+            Value::String(v) => v.to_wolfram(),
+            Value::Sequence(v) => v.to_wolfram(),
+            Value::Mapping(v) => v.to_wolfram(),
         }
     }
 }
@@ -18,13 +18,13 @@ impl ToWolfram for Value {
 impl ToWolfram for Number {
     fn to_wolfram(&self) -> Expr {
         if let Some(n) = self.as_u64() {
-            return n.into();
+            return (n as u32).into();
         }
         if let Some(n) = self.as_i64() {
             return n.into();
         }
         if let Some(n) = self.as_f64() {
-            return n.into();
+            return (n as u32).into();
         }
         Expr::null()
     }
