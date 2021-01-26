@@ -1,22 +1,10 @@
-use crate::{import_error, parse_error, Expr, Result, ToWolfram};
+use crate::{parse_error, serder::get_string_from_args, Expr, ImporterError, Result, ToWolfram};
 use json5::from_str;
-use serde_json::{Map, Number, Value};
-use wolfram_library_link::{
-    expr::{ExprKind, Symbol},
-    wstp,
-    wstp::{Error, Link},
-};
+use serde_json::{Number, Value};
+use wolfram_library_link::expr::Symbol;
 
 pub fn try_import_json5(args: Vec<Expr>) -> Result<Expr> {
-    let input = match args.as_slice() {
-        [] => return import_error!("Must use one string argument as input"),
-        [a] => match a.kind() {
-            ExprKind::String(s) => s.as_str(),
-            _ => return import_error!("argument must be a string"),
-        },
-        _ => return import_error!("too many arguments"),
-    };
-
+    let input = get_string_from_args(&args)?;
     match from_str::<Value>(input) {
         Ok(s) => Ok(s.to_wolfram()),
         Err(e) => parse_error!("{}", e),

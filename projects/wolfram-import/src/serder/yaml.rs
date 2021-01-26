@@ -1,6 +1,14 @@
-use crate::{Expr, ToWolfram};
-use serde_yaml::{Mapping, Number, Sequence, Value};
+use crate::{parse_error, serder::get_string_from_args, Expr, ImporterError, Result, ToWolfram};
+use serde_yaml::{from_str, Mapping, Number, Sequence, Value};
 use wolfram_library_link::expr::Symbol;
+
+pub fn try_import_yaml(args: Vec<Expr>) -> Result<Expr> {
+    let input = get_string_from_args(&args)?;
+    match from_str::<Value>(input) {
+        Ok(s) => Ok(s.to_wolfram()),
+        Err(e) => parse_error!("{}", e),
+    }
+}
 
 impl ToWolfram for Value {
     fn to_wolfram(&self) -> Expr {
