@@ -1,2 +1,6 @@
 [[data]]
-a = 1
+Languge = "json5"
+Importer = true
+ImporterOptions = ["Elements"]
+Exporter = false
+ExporterOptions = []
