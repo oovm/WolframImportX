@@ -1,3 +1,13 @@
-(* Mathematica Init file *)
-(* Created by the Wolfram Language Plugin for IntelliJ, see http://wlplugin.halirutan.de/ *)
-Get["MyContext`MyContext`"]
+(* ::Package:: *)
+
+SetDirectory@NotebookDirectory[];
+PacletInstall[CreatePacletArchive["../"],ForceVersionInstall->True]
+
+
+<<ImportX`
+Import["test.yaml","YAML"]//Dataset
+Import["test.json5","JSON5"]//Dataset
+Import["test.toml","TOML"]//Dataset
+
+
+

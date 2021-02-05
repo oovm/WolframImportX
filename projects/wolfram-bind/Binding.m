@@ -1,10 +1,15 @@
+(* ::Package:: *)
+
 BeginPackage["ImportX`"];
 
+Begin["`Private`"];
+(*$here = If[$InputFileName != "", ParentDirectory@$InputFileName, NotebookDirectory[]];*)
+(*$libpath = FileNameJoin[{$here, "Binary", "libimport_x.dylib"}];*)
 SharedTextImporter[filename_String, options___] := {"Text" -> Import[filename, "Text"]};
 SharedBinaryImporter[filename_String, options___] := {"Binary" -> Import[filename, "Binary"]};
-string2json5[text_String] := LibraryFunctionLoad["libimport_x", "import_json5", LinkObject, LinkObject][text];
-string2yaml[text_String] := LibraryFunctionLoad["libimport_x", "import_yaml", LinkObject, LinkObject][text];
-string2toml[text_String] := LibraryFunctionLoad["libimport_x", "import_toml", LinkObject, LinkObject][text];
+string2json5[text_String] := LibraryFunctionLoad["import_x", "import_json5", LinkObject, LinkObject][text];
+string2yaml[text_String] := LibraryFunctionLoad["import_x", "import_yaml", LinkObject, LinkObject][text];
+string2toml[text_String] := LibraryFunctionLoad["import_x", "import_toml", LinkObject, LinkObject][text];
 
 ImportExport`RegisterImport[
     "JSON5",
@@ -63,4 +68,5 @@ YamlDefaultImporter[filename_String, options___] := Block[
     string2yaml@Import[filename, "Text"]
 ];
 
-EndPackage[]
+End[];
+EndPackage[];

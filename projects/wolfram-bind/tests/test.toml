@@ -4,3 +4,10 @@ Importer = true
 ImporterOptions = ["Elements"]
 Exporter = false
 ExporterOptions = []
+
+[[data]]
+Languge = "json5"
+Importer = true
+ImporterOptions = ["Elements"]
+Exporter = false
+ExporterOptions = []
