@@ -1,13 +1,20 @@
 [[data]]
 Languge = "json5"
 Importer = true
-ImporterOptions = ["Elements"]
+ImporterOptions = ["Data", "Elements", "Text"]
 Exporter = false
 ExporterOptions = []
 
 [[data]]
-Languge = "json5"
+Languge = "toml"
 Importer = true
-ImporterOptions = ["Elements"]
+ImporterOptions = ["Data", "Elements", "Text"]
+Exporter = false
+ExporterOptions = []
+
+[[data]]
+Languge = "yaml"
+Importer = true
+ImporterOptions = ["Data", "Elements", "Text"]
 Exporter = false
 ExporterOptions = []

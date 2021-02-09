@@ -7,12 +7,20 @@ Paclet[
     Extensions -> {
         {
             "Kernel",
-            Root -> "Kernel",
-            Context -> "ImportX`"
-
+            "Root" -> ".",
+            "Context" -> {"ImportX`"}
         },
         {
             "LibraryLink"
+        },
+        {
+            "Asset",
+            "Root" -> "tests",
+            "Assets" -> {
+                {"example_json5", "test.json5"},
+                {"example_toml", "test.toml"},
+                {"example_yaml", "test.yaml"}
+            }
         }
     }
 ]
