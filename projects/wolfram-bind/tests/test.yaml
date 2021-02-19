@@ -1,0 +1,25 @@
+data:
+  - Languge: json5
+    Importer: true
+    ImporterOptions:
+      - Data
+      - Elements
+      - Text
+    Exporter: false
+    ExporterOptions: []
+  - Languge: toml
+    Importer: true
+    ImporterOptions:
+      - Data
+      - Elements
+      - Text
+    Exporter: false
+    ExporterOptions: []
+  - Languge: yaml
+    Importer: true
+    ImporterOptions:
+      - Data
+      - Elements
+      - Text
+    Exporter: false
+    ExporterOptions: []
