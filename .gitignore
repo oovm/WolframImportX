@@ -8,8 +8,9 @@
 *.iml
 
 # Rust
-target/**
+target/
 Cargo.lock
 
 # Wolfram
 *.paclet
+time-travel.*
