@@ -1,5 +1,6 @@
 mod builtin;
 mod json;
+mod svg;
 mod toml;
 mod yaml;
 

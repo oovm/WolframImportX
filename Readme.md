@@ -20,7 +20,7 @@ PacletInstall[release, ForceVersionInstall -> True];
 | JSON5  | json5, json |
 | TOML   | toml        |
 | YAML   | yaml, yml   |
-
+| SVG🚧  | svg         |
 
 ### JSON5
 
