@@ -7,9 +7,9 @@ Begin["`Private`"];
 (*$libpath = FileNameJoin[{$here, "Binary", "libimport-x.dylib"}];*)
 SharedTextImporter[filename_String, options___] := {"Text" -> Import[filename, "Text"]};
 SharedBinaryImporter[filename_String, options___] := {"Binary" -> Import[filename, "Binary"]};
-string2json5[text_String] := LibraryFunctionLoad["libximport", "import_json5", LinkObject, LinkObject][text];
-string2yaml[text_String] := LibraryFunctionLoad["libximport", "import_yaml", LinkObject, LinkObject][text];
-string2toml[text_String] := LibraryFunctionLoad["libximport", "import_toml", LinkObject, LinkObject][text];
+string2json5[text_String] := LibraryFunctionLoad["ximport", "import_json5", LinkObject, LinkObject][text];
+string2yaml[text_String] := LibraryFunctionLoad["ximport", "import_yaml", LinkObject, LinkObject][text];
+string2toml[text_String] := LibraryFunctionLoad["ximport", "import_toml", LinkObject, LinkObject][text];
 
 ImportExport`RegisterImport[
     "JSON5",
